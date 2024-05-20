@@ -1,0 +1,45 @@
+#emptyCart{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    text-align: center;
+    margin: 20px;
+    padding: 20px;
+}
+
+#emptyCart mat-icon{
+    width: 100%;
+    height: auto;
+    font-size: 150px;
+}
+
+#products{
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+
+#products mat-card{
+    margin: 25px;
+}
+
+#card-content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: left;
+}
+
+#cart-remove{
+    display: flex;
+}
+
+#cart-remove div{
+    display: flex;
+    flex-direction: column;
+}

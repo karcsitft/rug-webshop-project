@@ -1,0 +1,48 @@
+<mat-card id="products">
+  <mat-card-content>
+    <mat-card-title>Termékek</mat-card-title>
+    @for(product of AllProducts; track $index){
+      @if(product.image_url.includes('https://firebasestorage')){
+        <mat-card>
+          <mat-card-content id="card-content">
+            <img mat-card-lg-image [src]="product.image_url"/>
+            <p>Termék neve: {{product.name}}</p>
+            <p>Termék ára: {{product.price}} Ft</p>
+            <p>Készleten lévő: {{product.supply}}</p>
+          </mat-card-content>
+        </mat-card>
+      }
+    }
+  </mat-card-content>
+  <mat-card-content>
+    <mat-card-title>Felhasználók</mat-card-title>
+    @for(user of users; track $index){
+      <mat-card>
+        <mat-card-content id="card-content">
+          <p>UserID: {{user.id}}</p>
+          <p>Keresztnév: {{user.name.firstname}}</p>
+          <p>Vezetéknév: {{user.name.lastname}}</p>
+          <p>Email: {{user.email}}</p>
+        </mat-card-content>
+      </mat-card>
+    }
+  </mat-card-content>
+  <mat-card-content>
+    <mat-card-title>Rendelések:</mat-card-title>
+    @for(order of orders; track $index){
+      <mat-card>
+        <mat-card-content id="card-content">
+          <p>Rendelés azonosító: {{order.id}}</p>
+          <p>Státusz: {{order.state}}</p>
+          @for (user of users; track $index) {
+            @if(order.userid === user.id){
+              <p>Keresztnév: {{user.name.firstname}}</p>
+              <p>Vezetéknév: {{user.name.lastname}}</p>
+            }
+          }
+          <p>Összeg: {{order.totalprice}} Ft</p>
+        </mat-card-content>
+      </mat-card>
+    }
+  </mat-card-content>
+</mat-card>

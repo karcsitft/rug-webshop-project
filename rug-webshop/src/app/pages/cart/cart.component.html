@@ -1,0 +1,62 @@
+@if(isMessageVisible){
+    <p [ngStyle]="style">{{message}}</p> 
+}
+
+@if(cartItems.length === 0){
+    <div id="emptyCart">
+        <p>Üres a Kosarad!</p>
+        <mat-icon>
+            sentiment_dissatisfied
+        </mat-icon>
+    </div>
+}
+
+<mat-card id="products">
+    @for (item of cartItems; track $index) {
+        <mat-card>
+            <mat-card-content id="card-content">
+                <img mat-card-lg-image [src]="item.image_url">
+                <p>Termék neve: {{item.name}}</p>
+                <p>Termék ára: {{item.price}} Ft</p>
+                <p>Kosárban lévő: {{item.supply}}</p>
+                <p>Összesen: {{item.supply * item.price}} Ft</p>
+                <mat-card-actions>
+                    <div id="cart-remove">
+                        <input type="number" [value]="value" readonly>
+                        <div>
+                            <button (click)="increment(item.supply)">
+                                <mat-icon>
+                                    arrow_drop_up
+                                </mat-icon>
+                            </button>
+                            <button (click)="decrement()">
+                                <mat-icon>
+                                    <mat-icon>
+                                        arrow_drop_down
+                                    </mat-icon>
+                                </mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                    <button mat-raised-button (click)="removeItem(item, value)">Kosárból Törlés</button>
+                </mat-card-actions>
+            </mat-card-content>
+        </mat-card>
+    }
+
+    @if(cartItems.length > 0){
+        <mat-card>
+            <mat-card-content>
+                <p>Összesen: {{getTotalPrice()}} Ft</p>
+                @if(loggedInUser){
+                    <mat-card-actions>
+                        <button mat-raised-button (click)="addOrder()">Kosár megrendelése</button>
+                    </mat-card-actions>
+                } @else{
+                    <p>Rendelés leadásához jelentkezz be!</p>
+                }
+            </mat-card-content>
+        </mat-card>
+    }
+</mat-card>
+

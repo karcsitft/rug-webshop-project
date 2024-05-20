@@ -1,0 +1,23 @@
+<nav>
+  <ul>
+    <li><a routerLink="/main" routerLinkActive="active" ariaCurrentWhenActive="page">Main Page</a></li>
+    @if (!(loggedInUser)) {
+      <li><a routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page">Login</a></li>
+      <li><a routerLink="/register" routerLinkActive="active" ariaCurrentWhenActive="page">Register</a></li>
+    }
+    @else{
+      <li><a routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page" (click)="logout()">Logout</a></li>
+      <li><a routerLink="/profile" routerLinkActive="active" ariaCurrentWhenActive="page">Profile</a></li>
+    }
+    <li><a routerLink="/admin" routerLinkActive="active" ariaCurrentWhenActive="page">Admin</a></li>
+    <li>
+      <a routerLink="/cart" routerLinkActive="active" ariaCurrentWhenActive="page">
+        <mat-icon>shopping_cart</mat-icon>
+        <p>{{cartNumber}}</p>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<!-- The routed views render in the <router-outlet>-->
+<router-outlet></router-outlet>

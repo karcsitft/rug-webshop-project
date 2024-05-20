@@ -1,0 +1,44 @@
+<mat-card>
+    <mat-card-content>
+        <div class="example-container">
+            <mat-form-field>
+              <mat-label>Add meg az Email-ed!</mat-label>
+              <input matInput type="text"
+                     placeholder="pat@example.com"
+                     [formControl]="email"
+                     (change)="updateErrorMessage()"
+                     required>
+              @if (email.invalid) {
+                <mat-error>{{errorMessage}}</mat-error>
+              }
+            </mat-form-field>
+        </div>
+        
+        <div class="example-container">
+            <mat-form-field>
+              <mat-label>Add meg a jelszavad!</mat-label>
+              <input matInput type="password" [formControl]="password" (change)="updateErrorPassword()" [type]="hide ? 'password' : 'text'" required>
+              @if (password.invalid) {
+                <mat-error>{{passwordError}}</mat-error>
+              }
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+            </mat-form-field>
+        </div>
+
+        <section>
+            <span>
+                <button mat-raised-button (click)="login()">Bejelentkezés</button>
+            </span>
+            <span>
+                <button mat-raised-button [routerLink]="'/register'">Regisztráció</button>
+            </span>
+        </section>
+    </mat-card-content>
+</mat-card>
+
+
+
+
+

@@ -1,0 +1,25 @@
+@if(isMessageVisible){
+  <p [ngStyle]="style">{{message}}</p> 
+}
+
+<mat-paginator [length]="this.AllProducts.length"
+              [pageSize]="10"
+              [pageSizeOptions]="[1, 2, 10]"
+              (page)="onPageEvent($event)">   
+</mat-paginator>
+
+<mat-card id="products">
+  @for(product of pageSlice; track $index){
+    @if(product.image_url.includes('https://firebasestorage')){
+      <mat-card>
+        <mat-card-content id="card-content">
+          <img mat-card-lg-image [src]="product.image_url"/>
+          <p>Termék neve: {{product.name}}</p>
+          <p>Termék ára: {{product.price}} Ft</p>
+          <p>Készleten lévő: {{product.supply}}</p>
+          <button mat-raised-button (click)="cart(product.id)">Kosárba Tétel</button>
+        </mat-card-content>
+      </mat-card>
+    }
+  }
+</mat-card>
